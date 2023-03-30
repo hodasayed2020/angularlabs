@@ -1,0 +1,16 @@
+<!-- 2 -->
+<!-- interpolation -->
+<h1>{{storeclass.storename}}</h1>
+<!-- <h2>{{storeclass.clientname}}</h2> -->
+<!-- property binding -->
+
+<ul>
+    <li *ngFor="let product of storeclass.productlist">{{product}}</li>
+</ul>
+<!-- event binding -->
+<img *ngIf="showlogo" [src]="storeclass.logo">
+<button (click)="togglelogo()"class="btn btn-primary" >buy</button>
+<!-- <input type="text"class="form-control"name="user"id="user" [value]="username"> -->
+<input type="text"class="form-control"name="user"id="user" [(ngModel)]="username">
+
+    {{username}}

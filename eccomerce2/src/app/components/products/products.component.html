@@ -1,0 +1,64 @@
+<table class="table table-table-light m-1">
+  <thead>
+
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Image</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Price</th>
+      <th scope="col">CatID</th>
+      
+      <th>buy</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- built in variables -->
+    <!-- index=>start from Zero -->
+    <!-- class binding -->
+    <!-- <tr *ngFor="let prd of prdlist ;let i=index"[class.bg-warning]="prd.quantity== 1"> -->
+
+    <!-- style binding -->
+    <!-- ternary operator -->
+    <!-- <tr *ngFor="let prd of prdlist ;let i=index"[style.background-color]="(prd.quantity== 1)?'yellow':''"[style.color]="(prd.quantity==1)?'red':'green'"> -->
+    <!-- Attribute directive /ng style/ngclass-->
+    <!-- <tr *ngFor="let prd of prdlist ;let i=index"[ngStyle]="{'background-color':(prd.quantity== 1)?'yellow':'','color':(prd.quantity==1)?'red':'green'}"> -->
+
+    <!-- <tr *ngFor="let prd of prdlist ;let i=index"
+[ngClass]="{'bg-warning':prd.quantity==1,'text-danger':prd.quantity==0}"> -->
+    <ng-container *ngFor="let prd of prdlist ;let i=index">
+      <tr [ngStyle]="{'background-color':(prd.quantity==0)?'yellow':'grey'}">
+
+        <!-- < [hidden]="prd.quantity==0" -عشان نخفي الصف كله -->
+
+        <td>{{i+1}}</td>
+        <td>{{prd.name}}</td>
+        <td><img [src]="prd.imgURL" width="200" height="150"></td>
+
+        <td><ng-container *ngIf="prd.quantity>0;else outofstock">{{prd.quantity}}</ng-container>
+
+<ng-template #outofstock>out of stock</ng-template>
+</td>
+        <!-- ng switch -->
+        <!-- <ng-container [ngSwitch]="prd.quantity">
+          <ng-container *ngSwitchcase="0"></ng-container>
+
+        </ng-container> -->
+        <!-- <td>{{prd.quantity}} </td> -->
+        <td>{{prd.price}}</td>
+        <td>{{prd.catID}}</td>
+        <td><button (click)="toggleimg()" class="btn btn-success" [disabled]="prd.quantity==1">Add to cart</button></td>
+
+
+
+      </tr>
+    </ng-container>
+  </tbody>
+
+
+
+
+
+
+
+</table>
